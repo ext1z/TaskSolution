@@ -7,7 +7,7 @@ class Program
     static bool IsPalindrome(int number)
     {
         string original = number.ToString();
-        string reversed = new string(original.Reverse().ToArray());
+        string reversed = string.Concat(original.Reverse());
         return original == reversed;
     }
 

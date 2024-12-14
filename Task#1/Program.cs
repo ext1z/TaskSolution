@@ -1,26 +1,41 @@
 ﻿
+using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        // Time 09:31
-
-        Console.Write("Введите число:  ");
-        var input = Console.ReadLine();
-
-        int num = int.Parse(input!);
-
-
-        Console.WriteLine(DividedYourself(num));
-
-        bool DividedYourself(int number)
+        Console.Write("Введите число: ");
+        if (int.TryParse(Console.ReadLine(), out int number))
         {
-            if (number / 1 == number)
+            if (IsPrime(number))
             {
-                return true;
+                Console.WriteLine($"Число {number} является простым.");
             }
-            return false;
+            else
+            {
+                Console.WriteLine($"Число {number} не является простым.");
+            }
         }
+        else
+        {
+            Console.WriteLine("Пожалуйста, введите корректное целое число.");
+        }
+    }
+
+    static bool IsPrime(int number)
+    {
+        if (number <= 1) return false;
+        if (number == 2) return true;
+        if (number % 2 == 0) return false;
+
+        for (int i = 3; i <= Math.Sqrt(number); i += 2)
+        {
+            if (number % i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
